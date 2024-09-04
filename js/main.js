@@ -14,9 +14,11 @@ var gGame = {
     isOn: false,
     shownCount: 0,
     markedCount: 0,
-    secsPassed: 0
+    secsPassed: 0,
+    lives: 3
 }
 var timerId
+var isHintOn= false
 
 
 function onInit() {
@@ -25,6 +27,7 @@ function onInit() {
     buildBoard(gLevel.size)
     renderBoard(gBoard)
     updateMarkCounter()
+    updateSmiley()
 }
 
 function buildBoard(size) {
@@ -62,19 +65,28 @@ function renderBoard(board) {
 
 }
 
-
 function onCellClicked(elCell, i, j) {
+    if(isHintOn){
+        revealForHint(i,j)
+        isHintOn=false
+        return
+    }
     if (gBoard[i][j].isMarked) return
     if (gGame.shownCount === 0) {
         gStartPos = { i, j }
         createMines()
         setMinesNegsCount()
         renderBoard(gBoard, elCell)
-        gBoard.isOn = true
+        gGame.isOn = true
         startTimer()
     }
+    if (!gGame.isOn) return
+    if (gBoard[i][j].isMine && !gBoard[i][j].isMarked) {
+        clickedOnMine(elCell)
+        return
+    }
     expandShown(elCell, i, j)
-    checkGameOver(i, j)
+    checkGameWon()
 }
 
 function onCellMarked(elCell, i, j) {
@@ -86,7 +98,7 @@ function onCellMarked(elCell, i, j) {
         elCell.innerText = '🚩'
         elCell.classList.add("marked")
         gGame.markedCount++
-        checkGameOver(i, j)
+        checkGameWon(i, j)
     } else {  //remove flag
         currCell.isMarked = false
         if (currCell.isMine) {
@@ -100,31 +112,46 @@ function onCellMarked(elCell, i, j) {
         gGame.markedCount--
     }
     const elMarkCount = document.querySelector('.mark-count')
-    elMarkCount.innerText = gLevel.mines-gGame.markedCount
+    elMarkCount.innerText = gLevel.mines - gGame.markedCount
 }
 
-function checkGameOver(i, j) {
+function checkGameWon() {
     if (gGame.shownCount === (gLevel.size ** 2) - gLevel.mines &&
         gGame.markedCount === gLevel.mines) {
         gGame.isOn = false
         endTimer()
-        console.log('you win')
-    }
-    if (gBoard[i][j].isMine && !gBoard[i][j].isMarked) {
-        revealAllMines()
-        gGame.isOn = false
-        endTimer()
+        updateSmiley('won')
+        checkIfBest()
     }
 }
 
+function clickedOnMine(elCell) {
+    if (gGame.lives > 0) {
+        gGame.lives--
+        updateLivesLeft()
+        elCell.style.borderColor = 'red'
+        setTimeout(() => elCell.style.borderColor = 'black', 1000)
+        return
+    } else {
+        revealAllMines()
+        gGame.isOn = false
+        endTimer()
+        updateSmiley()
+    }
+}
+
+
 function onRestartGame(size, mineCount) {
-    gLevel.size = size
-    gLevel.mines = mineCount
+    if (size && mineCount) {
+        gLevel.size = size
+        gLevel.mines = mineCount
+    }
     gGame = {
         isOn: false,
         shownCount: 0,
         markedCount: 0,
-        secsPassed: 0
+        secsPassed: 0,
+        lives: 3
     }
     onInit()
 }
@@ -240,7 +267,50 @@ function updateTimer() {
 function endTimer() {
     clearInterval(timerId)
 }
-function updateMarkCounter(){
+function updateMarkCounter() {
     const elMarkCount = document.querySelector('.mark-count')
-    elMarkCount.innerText = gLevel.mines-gGame.markedCount
+    elMarkCount.innerText = gLevel.mines - gGame.markedCount
+}
+
+function updateLivesLeft() {
+    const elLives = document.querySelector('.lives span')
+    elLives.innerText = gGame.lives
+}
+
+function updateSmiley(mode) {
+    var smiley = ''
+    switch (mode) {
+        case 'won': smiley = '😎'
+            break;
+        case 'lost': smiley = '🤯'
+            break;
+        default: smiley = '🙂'
+            break;
+    }
+    const elSmiley = document.querySelector('.smiley')
+    elSmiley.innerText = smiley
+
+}
+
+function onHint(elHint){
+    elHint.classList.add("hide-hint")
+    isHintOn=true
+}
+
+function revealForHint(rowIdx,colIdx){
+    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+        if (i < 0 || i >= gBoard.length) continue
+        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+            if (j < 0 || j >= gBoard[0].length) continue
+            if (!gBoard[i][j].isShown) {
+                tempReveal(i,j)
+            }
+        }
+    }
+}
+
+function tempReveal(i,j){
+    var elCell = document.querySelector(`[data-i="${i}"][data-j="${j}"]`)
+    elCell.classList.remove("closed")
+    setTimeout(()=>elCell.classList.add("closed"),1000)
 }

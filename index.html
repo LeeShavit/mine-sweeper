@@ -11,9 +11,10 @@
     <div class="game">
         <div class="game-head">
             <div class="timer">00:00</div>
-            <div class="Smiley">😊</div>
+            <button class="Smiley" onclick="onRestartGame()">😊</button>
             <div class="mark-count"></div>
         </div>
+        <h5 class="lives">lives left:<span>3</span></h5>
         <table class="board-container">
             <tbody class="board"></tbody>
 
@@ -23,8 +24,19 @@
     <button onclick="onRestartGame(4,2)">Beginner</button>
     <button onclick="onRestartGame(8,14)">Intermediate</button>
     <button onclick="onRestartGame(12,32)">Expert</button>
+
+    <button class="hint" onclick="onHint(this)"> 💡</button>
+    <button class="hint" onclick="onHint(this)">💡</button>
+    <button class="hint" onclick="onHint(this)">💡</button>
+
+    <div class="score-board"> Best Scores:
+        <h5 class="level-1">Beginner:<span></span></h5>
+        <h5 class="level-2">Intermediate:<span></span></h5>
+        <h5 class="level-3">Expert:<span></span></h5>
+    </div>
     <footer>This game was built and designed by Lee Shavit 🌺</footer>
     <script src="js/utils.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/score.js"></script>
 
 </html>

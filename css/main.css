@@ -35,7 +35,7 @@ footer {
 .game {
     border: 1px solid black;
     width: min(70%, 450px);
-    text-align: justify;
+    text-align: center;
 }
 
 
@@ -58,4 +58,21 @@ footer {
     width: 15%;
     display: inline-block;
     margin-right: 1px;
+}
+
+.hint{
+    border: none;
+    background:none;
+    cursor: pointer;
+}
+
+.hide-hint{
+    visibility:hidden;
+    background-color: blue;
+}
+
+.score-board{
+    margin-top: 20%;
+    background-color: aquamarine;
+    width: 50%;
 }
