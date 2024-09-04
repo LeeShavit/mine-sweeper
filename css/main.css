@@ -1,0 +1,61 @@
+table {
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+
+}
+
+td {
+    background-color: rgb(162, 161, 161);
+    width: 20px;
+    height: 25px;
+    border: 1px solid black;
+    font-size: 1em;
+    text-align: center;
+}
+
+.closed {
+    content-visibility: hidden;
+    background-color: lightgray;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.marked {
+    background-color: lightgray;
+    content-visibility: visible;
+}
+
+.game {
+    border: 1px solid black;
+    width: min(70%, 450px);
+    text-align: justify;
+}
+
+
+
+.timer {
+    background-color: blue;
+    width: 15%;
+    display: inline-block;
+
+}
+
+.smiley {
+    width: 10%;
+    background-color: yellow;
+    display: inline-block
+}
+
+.mark-count {
+    background-color: rgb(145, 145, 232);
+    width: 15%;
+    display: inline-block;
+    margin-right: 1px;
+}

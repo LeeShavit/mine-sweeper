@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <title>MineSweeper</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="onInit()">
+
+    <h2>MineSweeper!</h2>
+    <div class="game">
+        <div class="game-head">
+            <div class="timer">00:00</div>
+            <div class="Smiley">😊</div>
+            <div class="mark-count"></div>
+        </div>
+        <table class="board-container">
+            <tbody class="board"></tbody>
+
+        </table>
+    </div>
+
+    <button onclick="onRestartGame(4,2)">Beginner</button>
+    <button onclick="onRestartGame(8,14)">Intermediate</button>
+    <button onclick="onRestartGame(12,32)">Expert</button>
+    <footer>This game was built and designed by Lee Shavit 🌺</footer>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+
+</html>
