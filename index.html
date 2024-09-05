@@ -6,29 +6,38 @@
 </head>
 
 <body onload="onInit()">
-
+    <button class="dark-mode" onclick="onDarkMode(this)">dark Mode</button>
     <h2>MineSweeper!</h2>
     <div class="game">
         <div class="game-head">
-            <div class="timer">00:00</div>
+            <button onclick="onOpenLevelModal()">Level</button>
+            <div class="level-modal">
+                <button onclick="onCloseModal()">x</button>
+                <button onclick="onRestartGame(4,2);onCloseModal()">Beginner</button>
+                <button onclick="onRestartGame(8,14);onCloseModal()">Intermediate</button>
+                <button onclick="onRestartGame(12,32);onCloseModal()">Expert</button>
+                <button onclick="onManualCreate();onCloseModal()">Create Manually</button>
+            </div>
+            <div class="timer"> 0 </div>
             <button class="Smiley" onclick="onRestartGame()">😊</button>
             <div class="mark-count"></div>
+            <button onclick="onUndo()">Undo</button>
         </div>
         <h5 class="lives">lives left:<span>3</span></h5>
         <table class="board-container">
             <tbody class="board"></tbody>
 
         </table>
+
+        <div class="clicks">
+            <button class="safe-btn" onclick="onSafeClick()">🪬Safe-Click🪬</button>
+            <p><span>3</span> Clicks Available</p>
+        </div>
+        <button class="hint" onclick="onHint(this)"> 💡</button>
+        <button class="hint" onclick="onHint(this)">💡</button>
+        <button class="hint" onclick="onHint(this)">💡</button>
+        <button class="mega" onclick="onMegaHint(this)">💥Mega-Hint💥</button>
     </div>
-
-    <button onclick="onRestartGame(4,2)">Beginner</button>
-    <button onclick="onRestartGame(8,14)">Intermediate</button>
-    <button onclick="onRestartGame(12,32)">Expert</button>
-
-    <button class="hint" onclick="onHint(this)"> 💡</button>
-    <button class="hint" onclick="onHint(this)">💡</button>
-    <button class="hint" onclick="onHint(this)">💡</button>
-
     <div class="score-board"> Best Scores:
         <h5 class="level-1">Beginner:<span></span></h5>
         <h5 class="level-2">Intermediate:<span></span></h5>

@@ -1,25 +1,72 @@
+:root{
+    --btn-color:#F4DEB3;
+    --displays-color: #CCE0AC;
+    --game-color: #ffbaba;
+    --page-color: #ffdce1;
+    --modal-color: #c7f1fc;
+    --text-color: #000000
+}
+
+
+body{
+    font-family:"Comic Sans MS";
+    box-sizing: border-box;
+    background-color:var(--page-color);
+    color: var(--text-color)
+}
+
+button{
+    background-color: var(--btn-color);
+    border: 1px double rgb(140, 91, 67);
+    border-radius: 5px;
+}
+.game-head{
+    align-items: center;
+}
+
 table {
     margin: auto;
-    margin-top: 50px;
+    margin-top: 10px;
     margin-bottom: 20px;
-    border: 1px solid black;
+    border: 1px solid var(--text-color);
+    background-color: var(--game-color);
 
 }
 
 td {
-    background-color: rgb(162, 161, 161);
+    background-color: rgb(199, 199, 199);
     width: 20px;
     height: 25px;
-    border: 1px solid black;
+    border: 2px inset rgb(200, 186, 186);
     font-size: 1em;
     text-align: center;
+
 }
+
 
 .closed {
-    content-visibility: hidden;
+    content-visibility:hidden;
     background-color: lightgray;
+    border: 2px outset rgb(247, 246, 246);
+
 }
 
+.level-modal{
+    width: 100px;
+    position: absolute;
+    background-color: var(--modal-color);
+    padding: 5px;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    gap: 5px;
+}
+
+.hidden{
+    display: none;
+}
 footer {
     position: fixed;
     bottom: 0;
@@ -33,28 +80,33 @@ footer {
 }
 
 .game {
-    border: 1px solid black;
-    width: min(70%, 450px);
+    margin: auto;
+    border: 1px solid var(--text-color);
+    width:min(400px,70%);
+    padding: 5%;
     text-align: center;
+    background-color: var(--game-color);
 }
 
 
 
 .timer {
-    background-color: blue;
-    width: 15%;
+    background-color: var(--displays-color);
+    width: 50px;
     display: inline-block;
 
 }
 
 .smiley {
-    width: 10%;
-    background-color: yellow;
-    display: inline-block
+    width: max(30px,15%);
+    display: inline-block;
+    background:none;
+    border: none;
+    
 }
 
 .mark-count {
-    background-color: rgb(145, 145, 232);
+    background-color: var(--displays-color);
     width: 15%;
     display: inline-block;
     margin-right: 1px;
@@ -68,11 +120,49 @@ footer {
 
 .hide-hint{
     visibility:hidden;
-    background-color: blue;
 }
 
 .score-board{
-    margin-top: 20%;
-    background-color: aquamarine;
+    margin-top: 10%;
+    background-color:var(--modal-color);
     width: 50%;
+}
+
+.safe{
+    transition: 1s;
+    background-color: rgba(255, 0, 0, 0.466);
+}
+
+.safe-btn{
+    width: 100%;
+    font-size: medium;
+    
+}
+
+.clicks{ 
+    font-size: smaller;
+    width: fit-content;
+    text-align: center;
+    display: inline-block;
+}
+
+p{
+    margin-block-start:0px;
+    font-size: smaller;
+}
+
+.create-modal{
+    background-color: var(--btn-color);
+}
+
+.lives{
+    margin-block-start: 2%;
+    margin-block-end: 2%;
+}
+.dark-mode{
+    position: absolute;
+    right: 0px;
+    border:none;
+    background-color: rgb(48, 103, 85);
+    color:white
 }
