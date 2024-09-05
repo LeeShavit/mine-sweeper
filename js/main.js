@@ -38,6 +38,7 @@ function onInit() {
     gSteps = []
     buildBoard(gLevel.size)
     renderBoard(gBoard)
+    renderScoreBoard()
     updateMarkCounter()
     updateSmiley()
     updateTimer()
@@ -423,12 +424,12 @@ function onUndo() {
 
 function onOpenLevelModal() {
     const elModal = document.querySelector('.level-modal')
-    elModal.classList.remove("hidden")
+    elModal.classList.add("show-modal")
 }
 
 function onCloseModal() {
     const elModal = document.querySelector('.level-modal')
-    elModal.classList.add("hidden")
+    elModal.classList.remove("show-modal")
 }
 
 function onDarkMode(elBtn) {
@@ -443,6 +444,7 @@ function onDarkMode(elBtn) {
         elRoot.style.setProperty('--page-color', '#ffdce1')
         elRoot.style.setProperty('--modal-color', '#c7f1fc')
         elRoot.style.setProperty('--text-color', '#000000')
+        elRoot.style.setProperty('--background-img', `url('/img/light-background.png')`)
     } else {
         elBtn.innerText = 'Light Mode'
         elBtn.style.backgroundColor = 'pink'
@@ -453,6 +455,7 @@ function onDarkMode(elBtn) {
         elRoot.style.setProperty('--page-color', '#2E073F')
         elRoot.style.setProperty('--modal-color', '#1A3636')
         elRoot.style.setProperty('--text-color', '#FFFFFF')
+        elRoot.style.setProperty('--background-img', `url('/img/dark-background.png')`)
 
     }
     isDark = !isDark

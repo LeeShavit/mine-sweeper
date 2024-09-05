@@ -1,6 +1,7 @@
 'use strict'
 
 
+
 function checkIfBest() {
     if (!getCurrBestScore()) {
         updateBestScore()
@@ -49,6 +50,15 @@ function getLevel() {
         return 2
     } else {
         return 3
+    }
+}
+
+function renderScoreBoard(){
+    for (var i = 0; i < 3; i++) {
+        const score = localStorage.getItem(`bestScore${i+1}`)
+        const player = localStorage.getItem(`bestPlayer${i+1}`)
+        const elScore = document.querySelector(`.level-${i+1} span`)
+        elScore.innerText = ` ${player}, with a score of ${score} seconds!`
     }
 }
 

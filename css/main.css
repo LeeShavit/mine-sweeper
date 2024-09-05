@@ -1,10 +1,11 @@
 :root{
-    --btn-color:#F4DEB3;
-    --displays-color: #CCE0AC;
-    --game-color: #ffbaba;
+    --btn-color:#ffe8bb;
+    --displays-color: #eaffc9;
+    --game-color: #ffbaf8;
     --page-color: #ffdce1;
     --modal-color: #c7f1fc;
-    --text-color: #000000
+    --text-color: #000000;
+    --background-img: url('/img/light-background.png')
 }
 
 
@@ -14,12 +15,13 @@ body{
     background-color:var(--page-color);
     color: var(--text-color);
     text-align: center;
-    background-image: url('img/dark-background.jpg');
+    background-image: var(--background-img);
+    background-size: cover;
 }
 
 button{
     background-color: var(--btn-color);
-    border: 1px double rgb(140, 91, 67);
+    border: 1px double rgb(150, 110, 90);
     border-radius: 5px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -73,6 +75,11 @@ td {
     justify-content: center;
     align-items: left;
     gap: 5px;
+    visibility: hidden
+}
+
+.show-modal{
+    visibility: visible;
 }
 
 .hidden{
@@ -103,8 +110,11 @@ footer {
 
 .timer {
     background-color: var(--displays-color);
-    width: 50px;
+    width: 15%;
     display: inline-block;
+    margin-right: 10%;
+    border-radius: 5px;
+
 
 }
 
@@ -120,15 +130,16 @@ footer {
     background-color: var(--displays-color);
     width: 15%;
     display: inline-block;
-    margin-right: 1px;
+    margin-left: 10%;
+    border-radius: 5px;
 }
 
 .hint{
     border: none;
     background:none;
     cursor: pointer;
-    box-shadow: 1px 0px 9px 0px #fff8ad;
     border-radius: 50%;
+    margin-bottom: 10px;
 
 }
 
@@ -140,9 +151,20 @@ footer {
     margin: auto;
     margin-top: 10%;
     background-color:var(--modal-color);
-    width: 50%;
+    width: 30%;
+    max-width: 250px;
     text-align:start ;
+    padding: 3px;
+    border: 7px dotted var(--displays-color);
+    border-radius: 10px;
 }
+
+h4{
+ text-align: center;
+ margin-top: 1px;
+ text-decoration: underline;
+}
+
 
 .safe{
     transition: 1s;
