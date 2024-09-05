@@ -67,7 +67,8 @@ function renderBoard(board) {
             const cell = board[i][j]
             const data = `data-i="${i}" data-j="${j}"`
             const content = getCellContent(i, j)
-            if (gStartPos && gStartPos.i === i && gStartPos.j === j) {
+            var classStr=''
+            if (gStartPos && gStartPos.i === i && gStartPos.j === j || gBoard[i][j].isShown) {
                 strHTML += `<td ${data} onclick="onCellClicked(this,${i},${j})" oncontextmenu="onCellMarked(this,${i},${j})">${content}</td>`
                 continue
             }
@@ -194,6 +195,7 @@ function clickedOnMine(elCell) {
     }
 }
 function onRestartGame(size, mineCount) {
+    if(gCreateMode) return
     clearInterval(timerId)
     if (size && mineCount) {
         gLevel.size = size
@@ -204,9 +206,9 @@ function onRestartGame(size, mineCount) {
 }
 
 function restartHints() {
-    const elHints = document.querySelectorAll('.hide-hint')
+    const elHints = document.querySelectorAll('.hide')
     for (var elHint of elHints) {
-        elHint.classList.remove('hide-hint')
+        elHint.classList.remove('hide')
     }
 }
 
@@ -315,7 +317,7 @@ function updateSmiley(mode) {
 }
 
 function onHint(elHint) {
-    elHint.classList.add("hide-hint")
+    elHint.classList.add("hide")
     isHintOn = true
 }
 
@@ -363,8 +365,21 @@ function getRandSafeCell() {
 }
 
 function onManualCreate() {
+    onRestartGame()
     gCreateMode = true
     gTotalMinesCreated = 0
+    var elMsg= document.querySelector('.create-count')
+    elMsg.style.display='block'
+    var elCounter= document.querySelector('.create-count span')
+    elCounter.innerText= gLevel.mines-gTotalMinesCreated
+}
+
+function onExitCreateMode(){
+    gCreateMode = false
+    var elMsg= document.querySelector('.create-count')
+    elMsg.style.display='none'
+    gLevel.mines=gTotalMinesCreated
+    updateMarkCounter()
 }
 
 function positionMine(elCell, i, j) {
@@ -372,10 +387,12 @@ function positionMine(elCell, i, j) {
     elCell.classList.remove("closed")
     elCell.innerText = '💣'
     gTotalMinesCreated++
-
+    var elCounter= document.querySelector('.create-count span')
+    elCounter.innerText= gLevel.mines-gTotalMinesCreated
     if (gTotalMinesCreated === gLevel.mines) {
         gCreateMode = false
-
+        var elMsg= document.querySelector('.create-count')
+        elMsg.style.display='none'
     }
 }
 
@@ -415,34 +432,34 @@ function onCloseModal() {
 }
 
 function onDarkMode(elBtn) {
-    const root = document.querySelector(':root')
+    const elRoot = document.querySelector(':root')
     if (isDark) {
         elBtn.innerText = 'Dark Mode'
         elBtn.style.backgroundColor = '#57A6A1'
         elBtn.style.color = '#FFFFFF'
-        root.style.setProperty('--btn-color', '#F4DEB3')
-        root.style.setProperty('--displays-color', '#CCE0AC')
-        root.style.setProperty('--game-color', '#ffbaba')
-        root.style.setProperty('--page-color', '#ffdce1')
-        root.style.setProperty('--modal-color', '#c7f1fc')
-        root.style.setProperty('--text-color', '#000000')
+        elRoot.style.setProperty('--btn-color', '#F4DEB3')
+        elRoot.style.setProperty('--displays-color', '#CCE0AC')
+        elRoot.style.setProperty('--game-color', '#ffbaba')
+        elRoot.style.setProperty('--page-color', '#ffdce1')
+        elRoot.style.setProperty('--modal-color', '#c7f1fc')
+        elRoot.style.setProperty('--text-color', '#000000')
     } else {
         elBtn.innerText = 'Light Mode'
         elBtn.style.backgroundColor = 'pink'
         elBtn.style.color = '#000000'
-        root.style.setProperty('--btn-color', '#57A6A1')
-        root.style.setProperty('--displays-color', '#240750')
-        root.style.setProperty('--game-color', '#344C64')
-        root.style.setProperty('--page-color', '#2E073F')
-        root.style.setProperty('--modal-color', '#1A3636')
-        root.style.setProperty('--text-color', '#FFFFFF')
+        elRoot.style.setProperty('--btn-color', '#57A6A1')
+        elRoot.style.setProperty('--displays-color', '#240750')
+        elRoot.style.setProperty('--game-color', '#344C64')
+        elRoot.style.setProperty('--page-color', '#2E073F')
+        elRoot.style.setProperty('--modal-color', '#1A3636')
+        elRoot.style.setProperty('--text-color', '#FFFFFF')
 
     }
     isDark = !isDark
 }
 
 function onMegaHint(elMegaHint) {
-    elMegaHint.classList.add("hide-hint")
+    elMegaHint.classList.add("hide")
     isMegaHintOn = true
     console.log('on')
 }
@@ -477,4 +494,40 @@ function tempRevealSection(startIdx, endIdx) {
     }
 }
 
+function onExterminator(elBtn) {
+    const mineCount = gLevel.mines < 3 ? gLevel.mines : 3
+    for (var i = 0; i < mineCount; i++) {
+        const randMine = getRandMine()
+        console.log(randMine)
+        gBoard[randMine.i][randMine.j].isMine = false
+        reduceMinesNegsAround(randMine.i,randMine.j)
+    }
+    renderBoard(gBoard)
+    elBtn.classList.add("hide")
+}
 
+function reduceMinesNegsAround(rowIdx, colIdx) {
+    for (var i = rowIdx - 1; i <= rowIdx + 1; i++) {
+        if (i < 0 || i >= gBoard.length) continue
+        for (var j = colIdx - 1; j <= colIdx + 1; j++) {
+            if (i === rowIdx && j === colIdx) continue
+            if (j < 0 || j >= gBoard[0].length) continue
+            gBoard[i][j].minesAroundCount--
+        }
+    }
+}
+
+function getRandMine() {
+    const minePos = []
+    for (var i = 0; i < gBoard.length; i++) {
+        for (var j = 0; j < gBoard[0].length; j++) {
+            const currCell = gBoard[i][j]
+            if (currCell.isMine) {
+                minePos.push({ i, j })
+            }
+        }
+    }
+    console.log(minePos)
+    const randIdx = getRandomIntInclusive(0, minePos.length - 1)
+    return minePos[randIdx]
+}

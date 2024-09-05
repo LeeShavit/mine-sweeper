@@ -12,13 +12,19 @@ body{
     font-family:"Comic Sans MS";
     box-sizing: border-box;
     background-color:var(--page-color);
-    color: var(--text-color)
+    color: var(--text-color);
+    text-align: center;
+    background-image: url('img/dark-background.jpg');
 }
 
 button{
     background-color: var(--btn-color);
     border: 1px double rgb(140, 91, 67);
     border-radius: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: fit-content;
+    color: var(--text-color);
 }
 .game-head{
     align-items: center;
@@ -38,11 +44,16 @@ td {
     width: 20px;
     height: 25px;
     border: 2px inset rgb(200, 186, 186);
-    font-size: 1em;
+    font-size: 90%;
     text-align: center;
+    font-weight:bolder ;
+    overflow: hidden;
 
 }
 
+.create-count{
+    display: none;
+}
 
 .closed {
     content-visibility:hidden;
@@ -82,8 +93,8 @@ footer {
 .game {
     margin: auto;
     border: 1px solid var(--text-color);
-    width:min(400px,70%);
-    padding: 5%;
+    max-width:min(500px,70%);
+    min-width: 400px;
     text-align: center;
     background-color: var(--game-color);
 }
@@ -102,7 +113,7 @@ footer {
     display: inline-block;
     background:none;
     border: none;
-    
+    font-size:xx-large;
 }
 
 .mark-count {
@@ -116,16 +127,21 @@ footer {
     border: none;
     background:none;
     cursor: pointer;
+    box-shadow: 1px 0px 9px 0px #fff8ad;
+    border-radius: 50%;
+
 }
 
-.hide-hint{
+.hide{
     visibility:hidden;
 }
 
 .score-board{
+    margin: auto;
     margin-top: 10%;
     background-color:var(--modal-color);
     width: 50%;
+    text-align:start ;
 }
 
 .safe{
@@ -165,4 +181,12 @@ p{
     border:none;
     background-color: rgb(48, 103, 85);
     color:white
+}
+
+.btn-container{
+    display: flex;
+    text-align: center;
+    gap: 5px;
+    width: fit-content;
+    margin: auto;
 }

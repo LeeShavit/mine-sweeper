@@ -24,19 +24,24 @@
             <button onclick="onUndo()">Undo</button>
         </div>
         <h5 class="lives">lives left:<span>3</span></h5>
+        <p class="create-count">Mines left to place:<span></span>
+            <button onclick="onExitCreateMode()">X</button>
+        </p>
         <table class="board-container">
             <tbody class="board"></tbody>
 
         </table>
-
-        <div class="clicks">
-            <button class="safe-btn" onclick="onSafeClick()">🪬Safe-Click🪬</button>
-            <p><span>3</span> Clicks Available</p>
+        <button class="hint" onclick="onHint(this)"> 🔦</button>
+        <button class="hint" onclick="onHint(this)">🔦</button>
+        <button class="hint" onclick="onHint(this)">🔦</button>
+        <div class="btn-container">
+            <div class="clicks">
+                <button class="safe-btn" onclick="onSafeClick()">🪬Safe-Click🪬</button>
+                <p><span>3</span> Clicks Available</p>
+            </div>
+            <button class="mega" onclick="onMegaHint(this)">💡Mega-Hint💡</button>
+            <button class="exterminator" onclick="onExterminator(this)">💥Exterminator💥</button>
         </div>
-        <button class="hint" onclick="onHint(this)"> 💡</button>
-        <button class="hint" onclick="onHint(this)">💡</button>
-        <button class="hint" onclick="onHint(this)">💡</button>
-        <button class="mega" onclick="onMegaHint(this)">💥Mega-Hint💥</button>
     </div>
     <div class="score-board"> Best Scores:
         <h5 class="level-1">Beginner:<span></span></h5>
