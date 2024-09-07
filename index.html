@@ -6,6 +6,7 @@
 </head>
 
 <body onload="onInit()">
+    <button class="how-to" onclick="onOpenHowTo()">How To Play</button>
     <button class="dark-mode" onclick="onDarkMode(this)">dark Mode</button>
     <h2>MineSweeper!</h2>
     <div class="game">
@@ -18,12 +19,12 @@
                 <button onclick="onRestartGame(12,32);onCloseModal()">Expert</button>
                 <button onclick="onManualCreate();onCloseModal()">Create Manually</button>
             </div>
-            <div class="timer"> 0 </div>
+            <div class="timer">time: <span>0<span></span> </div>
             <button class="Smiley" onclick="onRestartGame()">😊</button>
-            <div class="mark-count"></div>
+            <div class="mark-count">🚩 left: <span></span></div>
             <button onclick="onUndo()">Undo</button>
         </div>
-        <h5 class="lives">lives left:<span>3</span></h5>
+        <h5 class="lives">lives left:<span></span></h5>
         <p class="create-count">Mines left to place:<span></span>
             <button onclick="onExitCreateMode()">X</button>
         </p>
@@ -31,15 +32,15 @@
             <tbody class="board"></tbody>
 
         </table>
-        <button class="hint" onclick="onHint(this)"> 🔦</button>
-        <button class="hint" onclick="onHint(this)">🔦</button>
-        <button class="hint" onclick="onHint(this)">🔦</button>
+        <button class="hint" onclick="onHint(this)">💡</button>
+        <button class="hint" onclick="onHint(this)">💡</button>
+        <button class="hint" onclick="onHint(this)">💡</button>
         <div class="btn-container">
             <div class="clicks">
                 <button class="safe-btn" onclick="onSafeClick()">🪬Safe-Click🪬</button>
                 <p><span>3</span> Clicks Available</p>
             </div>
-            <button class="mega" onclick="onMegaHint(this)">💡Mega-Hint💡</button>
+            <button class="mega" onclick="onMegaHint(this)">⭐️Mega-Hint⭐️</button>
             <button class="exterminator" onclick="onExterminator(this)">💥Exterminator💥</button>
         </div>
     </div>
@@ -48,6 +49,49 @@
         <h5 class="level-1">Beginner:<span></span></h5>
         <h5 class="level-2">Intermediate:<span></span></h5>
         <h5 class="level-3">Expert:<span></span></h5>
+    </div>
+
+    <div class="guide hide">
+        <button onclick="onCloseHowTo()">x</button>
+        <h3>Welcome to Minesweeper! 🎉</h3>
+        <p><strong>Objective:</strong> Uncover all the safe squares and avoid the mines! Your mission is to reveal every cell that doesn’t have a mine while staying clear of any hidden dangers.</p>
+
+        <h5>Basic Controls:</h5>
+        <p><strong>Left Click <span class="emoji">🖱️</span>:</strong> Reveal what’s inside a cell.</p>
+        <p><strong>Right Click <span class="emoji">🚩</span>:</strong> Flag or unflag a suspected cell (flagged cells can’t be revealed).</p>
+
+        <h5>Game End Conditions:</h5>
+        <p><strong>LOSE <span class="emoji">💥</span>:</strong> Click on a mine, and the game reveals all mines. You lose and the game ends.</p>
+        <p><strong>WIN <span class="emoji">🎉</span>:</strong> Flag all the mines and reveal all other cells to win the game!</p>
+
+        <h5>Expanding Cells:</h5>
+        <p>When you left-click a cell, one of these happens:</p>
+        <ul>
+            <li><strong>MINE <span class="emoji">💣</span>:</strong> The mine is revealed, and you lose a life. Oh no!</li>
+            <li><strong>Cell with Neighbors <span class="emoji">🔢</span>:</strong> The cell shows a number indicating how many mines are around it.</li>
+            <li><strong>Cell without Neighbors <span class="emoji">🌟</span>:</strong> The cell and its neighboring cells are automatically revealed.</li>
+        </ul>
+
+        <h5>Lives <span class="emoji">❤️</span>:</h5>
+        <p><strong>You have 3 Lives.</strong> Clicking on a mine loses you a life. Keep an eye on your lives and play carefully!</p>
+
+        <h5>Hints <span class="emoji">💡</span>:</h5>
+        <p><strong>You have 3 Hints.</strong> Click a hint to reveal a cell and its neighbors for a few seconds. The hint will then disappear. Use them wisely!</p>
+
+        <h5>Safe-Clicks <span class="emoji">🛡️</span>:</h5>
+        <p><strong>You have 3 Safe-Clicks.</strong> Clicking this button will briefly mark a random cell that is safe to click. Handy for those tricky spots!</p>
+
+        <h5>Manual Mine Placement <span class="emoji">🛠️</span>:</h5>
+        <p><strong>Create your own game!</strong> Switch to “Manually Create” mode to place mines yourself. After placing all the mines, start the game and enjoy!</p>
+
+        <h5>Mega-Hint <span class="emoji">🌟</span>:</h5>
+        <p><strong>Use it once per game.</strong> Click any two cells to reveal the area between them for 2 seconds. It’s a great way to get a sneak peek!</p>
+
+        <h5>Exterminator Button <span class="emoji">🚀</span>:</h5>
+        <p><strong>Eliminate 3 Mines.</strong> Clicking this button will randomly remove 3 mines from the board. A powerful tool to help you out!</p>
+
+        <p>Have a blast and good luck finding all the safe squares while avoiding the mines! May your Minesweeper adventure be full of fun and excitement! <span class="emoji">🌟🎮🕹️</span></p>
+
     </div>
     <footer>This game was built and designed by Lee Shavit 🌺</footer>
     <script src="js/utils.js"></script>
