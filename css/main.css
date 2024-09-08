@@ -1,5 +1,5 @@
-:root {
-    --btn-color: #ffe8bb;
+:root{
+    --btn-color:#ffe8bb;
     --displays-color: #eaffc9;
     --game-color: #ffbaf8;
     --page-color: #ffdce1;
@@ -9,17 +9,17 @@
 }
 
 
-body {
-    font-family: "Comic Sans MS";
+body{
+    font-family:"Comic Sans MS";
     box-sizing: border-box;
-    background-color: var(--page-color);
+    background-color:var(--page-color);
     color: var(--text-color);
     text-align: center;
     background-image: var(--background-img);
     background-size: cover;
 }
 
-button {
+button{
     background-color: var(--btn-color);
     border: 1px double rgb(150, 110, 90);
     border-radius: 5px;
@@ -28,8 +28,7 @@ button {
     height: fit-content;
     color: var(--text-color);
 }
-
-.game-head {
+.game-head{
     align-items: center;
 }
 
@@ -49,24 +48,24 @@ td {
     border: 2px inset rgb(200, 186, 186);
     font-size: 90%;
     text-align: center;
-    font-weight: bolder;
+    font-weight:bolder ;
     overflow: hidden;
 
 }
 
-.create-count {
+.create-count{
     display: none;
 }
 
 .closed {
-    content-visibility: visible;
+    color: rgba(0, 0, 0, 0);
     background-color: lightgray;
     border: 2px outset rgb(247, 246, 246);
 
 }
 
-.level-modal {
-    width: 130px;
+.level-modal{
+    width: 100px;
     position: absolute;
     background-color: var(--modal-color);
     padding: 5px;
@@ -76,25 +75,21 @@ td {
     justify-content: center;
     align-items: left;
     gap: 5px;
-    visibility: hidden;
-    border-radius: 5px;
-
+    visibility: hidden
 }
 
-.show-modal {
+.show-modal{
     visibility: visible;
 }
 
-.hidden {
+.hidden{
     display: none;
 }
-
 footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
-    font-size: small;
 }
 
 .marked {
@@ -105,7 +100,7 @@ footer {
 .game {
     margin: auto;
     border: 1px solid var(--text-color);
-    max-width: min(500px, 70%);
+    max-width:min(500px,70%);
     min-width: 400px;
     text-align: center;
     background-color: var(--game-color);
@@ -119,16 +114,16 @@ footer {
     display: inline-block;
     margin-right: 10%;
     border-radius: 5px;
-    font-size: small;
+
 
 }
 
 .smiley {
-    width: max(30px, 15%);
+    width: max(30px,15%);
     display: inline-block;
-    background: none;
+    background:none;
     border: none;
-    font-size: xx-large;
+    font-size:xx-large;
 }
 
 .mark-count {
@@ -137,128 +132,83 @@ footer {
     display: inline-block;
     margin-left: 10%;
     border-radius: 5px;
-    margin-bottom: 0pxs;
-    font-size: small;
-    }
+}
 
-.hint {
+.hint{
     border: none;
-    background: none;
+    background:none;
     cursor: pointer;
     border-radius: 50%;
     margin-bottom: 10px;
-}
-
-.hint.on {
-    border: none;
-    background-color: #ffff0090;
-    box-shadow: 0px 0px 15px 10px #ffff0085;
-}
-
-.hint.off {
-    color: transparent;
-    pointer-events: none;
-    text-shadow: 0 0 0 rgb(41, 41, 44);
 
 }
 
-.hide {
-    visibility: hidden;
+.hide{
+    visibility:hidden;
 }
 
-.score-board {
+.score-board{
     margin: auto;
     margin-top: 10%;
-    background-color: var(--modal-color);
+    background-color:var(--modal-color);
     width: 30%;
     max-width: 250px;
-    text-align: start;
+    text-align:start ;
     padding: 3px;
     border: 7px dotted var(--displays-color);
     border-radius: 10px;
 }
 
-h4 {
-    text-align: center;
-    margin-top: 1px;
-    text-decoration: underline;
+h4{
+ text-align: center;
+ margin-top: 1px;
+ text-decoration: underline;
 }
 
 
-.safe {
+.safe{
     transition: 1s;
     background-color: rgba(255, 0, 0, 0.466);
 }
 
-.safe-btn {
+.safe-btn{
     width: 100%;
     font-size: medium;
-
+    
 }
 
-.clicks {
+.clicks{ 
     font-size: smaller;
     width: fit-content;
     text-align: center;
     display: inline-block;
 }
 
-p {
-    margin-block-start: 0px;
+p{
+    margin-block-start:0px;
     font-size: smaller;
 }
 
-.create-modal {
+.create-modal{
     background-color: var(--btn-color);
 }
 
-.lives {
+.lives{
     margin-block-start: 2%;
     margin-block-end: 2%;
 }
-
-.dark-mode {
+.dark-mode{
     position: absolute;
-    right: 5px;
-    border: none;
+    right: 0px;
+    border:none;
     background-color: rgb(48, 103, 85);
-    color: white
+    color:white
 }
 
-.how-to {
-    position: absolute;
-    left: 5px;
-}
-
-.btn-container {
+.btn-container{
     display: flex;
     text-align: center;
     gap: 5px;
     width: fit-content;
     margin: auto;
-}
-
-.guide{
-    text-align: start;
-    background-color: var(--modal-color);
-    overflow-y: scroll;
-    width: 60%;
-    height: 500px;
-    position: absolute;
-    top: 90px;
-    left: 15%;
-    padding: 10px;
-}
-
-.guide button{
-    position: absolute;
-    right: 0px
-}
-
-li{
-    font-size: smaller;
-}
-
-.guide h5{
-    text-decoration: underline;
 }
