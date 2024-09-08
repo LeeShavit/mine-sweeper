@@ -94,7 +94,7 @@ footer {
 
 .marked {
     background-color: lightgray;
-    content-visibility: visible;
+    color: var(--text-color)
 }
 
 .game {
